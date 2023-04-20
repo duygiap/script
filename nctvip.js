@@ -1,6 +1,6 @@
 var obj = JSON.parse($response.body);
 let url = $request.url;
-var cons = "users/info";
+var cons = "account/info";
 if(url.indexOf(cons) != -1) {
   obj.data.VIPExpire= "27/03/2250 00:00:00";
   obj.data.isVIP= true;
