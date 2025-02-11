@@ -1,10 +1,16 @@
-var obj = JSON.parse($response.body);
-let url = $request.url;
-var cons = "accounts/me.json";
-if(url.indexOf(cons) != -1) {
-  obj.subscription.subscription_plan_name=
-    'Premium';
-  obj.subscription.config.hide_ads=true;
-  obj.active_events.nft_rewards_program=true;
-}
-$done({body: JSON.stringify(obj)});
+// QuanX script to modify API response
+let body = $response.body; 
+let obj = JSON.parse(body);
+
+// Modify subscription details
+obj.subscription.subscription_plan_name = "Premium";
+obj.subscription.apple_price_id = "premium_plan";
+obj.subscription.start_at = "2025-01-01T00:00:00Z";
+obj.subscription.end_at = "2099-12-31T23:59:59Z";
+obj.subscription.config.hide_ads = true; // Disable ads
+
+// Convert modified object back to JSON
+body = JSON.stringify(obj);
+
+// Return modified response
+$done({ body });
